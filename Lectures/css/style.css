@@ -1,0 +1,14 @@
+.heading1
+{
+	color: green;
+	font-size: 2rem;
+	font-weight: 200;
+
+}
+
+.heading2{
+	color: orange;
+	font-size: 3rem;
+	font-weight: 100;
+	background-color: yellow;
+}
