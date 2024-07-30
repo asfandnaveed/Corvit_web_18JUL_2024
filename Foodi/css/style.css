@@ -1,0 +1,15 @@
+.heading{
+	font-size: 3.4rem;
+	font-weight: 800;
+}
+.heading span{
+	color: #39DB4A;
+}
+.sub_heading{
+	color: #4A4A4A;
+	font-size: 1.1rem;
+}
+.left-col{
+	padding-left: 5rem;
+	padding-right: 5rem;
+}
