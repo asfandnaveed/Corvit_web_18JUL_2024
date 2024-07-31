@@ -1,15 +1,38 @@
+body{
+	font-family: "Inter",sans-serif;
+}
+
+
 .heading{
 	font-size: 3.4rem;
-	font-weight: 800;
+	font-weight: 900;
 }
 .heading span{
 	color: #39DB4A;
 }
 .sub_heading{
 	color: #4A4A4A;
-	font-size: 1.1rem;
+	font-size: 1.0rem;
+	font-weight: 400;
+}
+.text-watch{
+	color: #4D4D4D;
+	font-weight: 700;
+
 }
 .left-col{
 	padding-left: 5rem;
 	padding-right: 5rem;
+}
+.btn-order{
+	background-color:#39DB4A;
+	color: white;
+	font-weight: 600;
+/*	box-shadow :x-axis y-axis blur spread*/
+	box-shadow: 1px 5px 10px 5px rgba(57, 219,74,0.3);
+}
+.btn-play{
+	width: 50px;
+	height: 50px;
+	font-size: 1.9rem;
 }
