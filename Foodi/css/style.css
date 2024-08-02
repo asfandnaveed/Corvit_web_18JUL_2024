@@ -10,10 +10,23 @@ body{
 .heading span{
 	color: #39DB4A;
 }
+
+@media (max-width:768px){
+
+
+	.heading{
+		font-size: 2.4rem;
+	}
+
+}
+
+
 .sub_heading{
 	color: #4A4A4A;
-	font-size: 1.0rem;
+	font-size: 1.1rem;
 	font-weight: 400;
+	word-spacing: 1.2px;
+	padding-right: 1.5rem;
 }
 .text-watch{
 	color: #4D4D4D;
@@ -36,3 +49,8 @@ body{
 	height: 50px;
 	font-size: 1.9rem;
 }
+.category-box{
+	border-radius: 27px;
+}
+
+
