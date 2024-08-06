@@ -3,7 +3,20 @@
 	font-family: 'super';
 }
 
+.header{
+	background-image: url('../images/background.png');
+}
+
 .heading{
-	font-size: 3.5rem;
+	font-size: 6.5rem;
 	font-family: 'super';
+	color: #3d2210;
+	text-shadow: 3px 3px #f6e5bc;
+	line-height: 0.3;
+}
+.sub-heading{
+	font-size: 4.5rem;
+	font-family: 'super';
+	color: #3d2210;
+	text-shadow: 3px 3px #f6e5bc;
 }
