@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript</title>
+</head>
+<body>
+
+
+	
+
+	<div id="txt">Hello Students</div>
+
+	<img id="img" src="images/header.png">
+ 
+	<button onclick="changeValue();">Click Me</button>
+
+	<script type="text/javascript">
+
+
+		function changeValue(){
+			document.getElementById('txt').innerHTML= 'Text Changed';
+			document.getElementById('txt').style.fontSize= '50px';
+			document.getElementById('txt').style.color= 'green';
+			document.getElementById('img').src= 'images/1.png';
+		}
+		
+
+	</script>
+
+</body>
+</html>
