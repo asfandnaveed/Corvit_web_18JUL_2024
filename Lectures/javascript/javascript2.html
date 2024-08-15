@@ -13,6 +13,27 @@
 	<input id="input-age" class="form-control" type="number">
 	<button class="btn btn-primary" onclick="detectAge();">Submit Age</button>
 
+	<button class="btn btn-primary" onclick="calculate();">Calculate</button>
+
+	<button class="btn btn-primary" onclick="AddData();">Add Table Data</button>
+
+
+
+	<div id="table"></div>
+
+
+
+	<table id="tbl" class="table">
+		<tr>
+			<th>No.</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Address</th>
+		</tr>
+		
+		
+	</table>
+
 	<script type="text/javascript">
 		
 		function detectAge(){
@@ -28,10 +49,40 @@
 
 			// var x=6;
 			// var y=15;
-			// var z = "Hello";
+			// var z = "Hello";	
 
-			
+
 		}
+
+		function calculate(){
+
+
+
+
+			for(var i=1; i<10;i++){
+
+
+				var result = "<div>"+(2*i)+"</div>";
+
+				document.getElementById('table').innerHTML +=result;
+
+
+				// console.log(i);
+			}
+
+		}
+
+
+		function AddData(){
+			for(var i=1;i<10;i++){
+				var trData = "<tr><td>1</td><td>Name</td><td>email</td><td>Lahore, Pakistan</td></tr>";
+				document.getElementById('tbl').innerHTML +=trData;
+			}
+		}
+
+
+
+
 
 
 	</script>
