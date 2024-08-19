@@ -4,21 +4,62 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Jquery</title>
+
+	<style>
+		.div{
+			width: 200px;
+			height: 200px;
+			background-color: lawngreen ;
+			position: absolute;
+		}
+	</style>
 </head>
 <body>
 
-	<div id="txt">Hello Corvit</div>
+	<div id="heading">Corvit</div>
 	<button id="btn">Click Me</button>
+	<button id="btn2">Click Me</button>
+
+	<div id="divText">Div Text</div>
+
+	<div id="box1" class="div">Box 1</div>
+
 
 
 	<script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+
 	<script type="text/javascript">
 		
 		$('#btn').click(function (){
-			$('#txt').text('Text Changed');
+
+			$('#heading').fadeOut(3000);
+		});
+
+		$('#btn2').click(function (){
+
+			$('#heading').fadeIn(3000);
+		});
+
+		$('#divText').click(function (){
+
+			$(this).fadeOut(500,function(){
+				
+				$(this).text('New Text').fadeIn(500);
+			});
+		});
+
+
+		$('#box1').click(function(){
+			$(this).animate({
+				width:'400px',
+				height:'300px',
+				right:'0px',
+				bottom:'0px'
+			});
 		});
 
 	</script>
+
 
 </body>
 </html>
