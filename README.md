@@ -9,3 +9,6 @@ https://www.figma.com/design/vhWicWzeJr2vWIUJ81CYy9/Free-Blog-Template--%7C-Mode
 
 # Dribbble Login Page
 https://dribbble.com/shots/21363706-Haze-Website-Log-in-Page
+
+# ADMIN PORTAL 
+https://drive.google.com/file/d/1eRMeAe1s_9lp3dShkuPm_ibg-SnvV8rc/view?usp=sharing
