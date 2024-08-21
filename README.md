@@ -10,5 +10,5 @@ https://www.figma.com/design/vhWicWzeJr2vWIUJ81CYy9/Free-Blog-Template--%7C-Mode
 # Dribbble Login Page
 https://dribbble.com/shots/21363706-Haze-Website-Log-in-Page
 
-# ADMIN PORTAL 
-https://drive.google.com/file/d/1eRMeAe1s_9lp3dShkuPm_ibg-SnvV8rc/view?usp=sharing
+# Figma ANIMATION
+https://www.figma.com/design/6fU33jPArz9Lb4QuwTvXBq/3D-Interactive-Animation-For-UNIVERSE-(Community)-(Community)-(Copy)?node-id=16-334&t=U4GCAkYx84XJDGUm-0
