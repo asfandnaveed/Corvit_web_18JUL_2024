@@ -9,3 +9,10 @@ https://www.figma.com/design/vhWicWzeJr2vWIUJ81CYy9/Free-Blog-Template--%7C-Mode
 
 # Dribbble Login Page
 https://dribbble.com/shots/21363706-Haze-Website-Log-in-Page
+
+# Figma ANIMATION
+https://www.figma.com/design/6fU33jPArz9Lb4QuwTvXBq/3D-Interactive-Animation-For-UNIVERSE-(Community)-(Community)-(Copy)?node-id=16-334&t=U4GCAkYx84XJDGUm-0
+
+
+# Feedback 
+https://docs.google.com/forms/d/e/1FAIpQLSccZLr_nBXB527uAISJjYaZAEQGmoFsvM7bL0rKsCoK_3Ef8A/viewform?usp=sf_link
