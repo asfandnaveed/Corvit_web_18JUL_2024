@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TypeWriter</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+
+	<script type="text/javascript" src="js/core.js"></script>
+	<script type="text/javascript">
+		
+		var app = document.getElementById('app');
+
+		var typewriter = new Typewriter(app, {
+		    loop: true
+		});
+
+		typewriter.typeString('Hello World!')
+		    .pauseFor(2500)
+		    .deleteAll()
+		    .typeString('Strings can be removed')
+		    .pauseFor(2500)
+		    .deleteChars(7)
+		    .typeString('<strong>altered!</strong>')
+		    .pauseFor(2500)
+		    .deleteChars(8)
+		    .typeString('<strong>Students!</strong>')
+		    .start();
+	</script>
+
+
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><lottie-player src="https://lottie.host/493bbac0-0e1d-4dd3-935e-079cf4f493a5/eB6YBdoJSW.json" background="##FFFFFF" speed="1" style="width: 500px; height: 500px" loop autoplay direction="1" mode="normal"></lottie-player>
+
+</body>
+</html>
