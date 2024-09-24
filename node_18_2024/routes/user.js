@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, getUsers } from "../handler/userHandler.js";
+import { createUser, getUsers,userLogin } from "../handler/userHandler.js";
 
 
 
@@ -8,6 +8,8 @@ const userRouter = Router();
 userRouter.get('/', getUsers);
 
 userRouter.post('/create',createUser);
+
+userRouter.post('/login',userLogin);
 
 
 
