@@ -8,6 +8,8 @@ import 'bootstrap/dist/js/bootstrap.js';
 // import Navbar from './components/Navbar.js'; 
 import { useEffect, useState } from 'react';
 import Login from './components/Login.js';
+import FirebaseAuth from './components/FirebaseRegister.js';
+import GoogleSignIn from './components/GoogleSignIn.js';
 
 function App() {
 
@@ -66,7 +68,7 @@ function App() {
 
 
     <div>
-    <h1>User List</h1>
+    {/* <h1>User List</h1>
     <ul>
       {
       users.map((u)=>(
@@ -74,7 +76,9 @@ function App() {
       ))
       }
     </ul>
-    <Login/>
+    <Login/> */}
+    {/* <FirebaseAuth/> */}
+    <GoogleSignIn/>
   </div>
   );
 }
