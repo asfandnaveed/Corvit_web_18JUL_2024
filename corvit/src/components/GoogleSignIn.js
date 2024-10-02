@@ -26,6 +26,11 @@ function GoogleSignIn() {
 
     };
 
+    const SignOut = async()=>{
+        auth.signOut();
+    };
+
+
 
 
     return (
