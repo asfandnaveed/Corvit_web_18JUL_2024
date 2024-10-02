@@ -17,4 +17,7 @@ https://www.figma.com/design/6fU33jPArz9Lb4QuwTvXBq/3D-Interactive-Animation-For
 # Weather App
 https://dribbble.com/shots/22934605-Weather-App-Design-Amir-Tahiri
 
+# ADMIN PORTAL 
+https://drive.google.com/drive/folders/1Ii8KAxh0f_P0m55388Os8NKaV_35axgR?usp=sharing
+
 
