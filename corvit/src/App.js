@@ -10,6 +10,10 @@ import { useEffect, useState } from 'react';
 import Login from './components/Login.js';
 import FirebaseAuth from './components/FirebaseRegister.js';
 import GoogleSignIn from './components/GoogleSignIn.js';
+import PhoneAuth from './components/PhoneAuth.js';
+import FirebaseDatabase from './components/FirebaseDatabase.js';
+import RegisterUser from './components/RegisterUser.js';
+import Chat from './components/chat.js';
 
 function App() {
 
@@ -78,7 +82,11 @@ function App() {
     </ul>
     <Login/> */}
     {/* <FirebaseAuth/> */}
-    <GoogleSignIn/>
+    {/* <GoogleSignIn/> */}
+    {/* <PhoneAuth/>
+    <FirebaseDatabase/> */}
+    {/* <RegisterUser/> */}
+    <Chat/>
   </div>
   );
 }
