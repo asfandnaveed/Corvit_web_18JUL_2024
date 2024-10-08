@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, database } from "../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { push, ref, set } from "firebase/database";
+import { onValue, push, ref, set } from "firebase/database";
+import { right } from "@popperjs/core";
 
 
 
@@ -11,23 +12,46 @@ function Chat() {
     const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [chats , setChats] = useState([]);
 
-    if (auth.user != null) {
-        setUser(auth.user);
-        console.log('USER', user);
-    } else {
-        console.log('USER Not Logged In');
-    }
+    
+
+    useEffect(()=>{
+
+        // if(auth.currentUser){
+        //     setUser(auth.currentUser);
+        //     console.log('User Logged In',user.uid);
+        // }else{
+        //     console.log('User Not Logged In');
+        // }
+
+
+        const userRef = ref(database,'chats');
+
+        onValue(userRef, (snapshot)=>{
+            const data = snapshot.val();
+            if(data){
+                const chatList = Object.values(data);
+                setChats(chatList);
+            }
+        });
+
+
+    },[user]);
+
+
 
 
     const saveMessage = async () => {
 
 
-        const userRef = ref(database,'chats');
+        const userRef = ref(database, 'chats');
 
-        await set(push(userRef),{
-            message:message,
-            uid:user.uid,
+        await set(push(userRef), {
+            message: message,
+            uid: user.uid,
+        }).then(()=>{
+          
         });
 
 
@@ -35,10 +59,10 @@ function Chat() {
 
     const login = async () => {
 
-        try{
-            const result = await signInWithEmailAndPassword(auth,email,password);
+        try {
+            const result = await signInWithEmailAndPassword(auth, email, password);
             setUser(result.user);
-        }catch(e){
+        } catch (e) {
 
         }
 
@@ -52,9 +76,29 @@ function Chat() {
         <div>
             {
                 user ?
-                    <div>
-                        <textarea placeholder="Enter Message" value={message} onChange={(m) => { setMessage(m.target.value) }}></textarea>
-                        <button onClick={saveMessage}>Send Message</button>
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-12 mt-2" style={{height:'600px'}}>
+                                <div className="w-100 h-100 border p-2 shadow rounded" style={{overflowY:'scroll'}}>
+                                    {/* CHAT BOX */}
+
+                                    {
+                                        chats.map((c,index)=>(
+                                            <div key={index} className={`rounded-pill p-2 m-1 text-white ${c.uid == user.uid? 'bg-success ms-auto' : 'bg-info me-auto' }`} 
+                                            style={{maxWidth:'40%',textAlign: c.uid==user.uid? 'right' : 'left'}}>
+                                                {c.message}
+                                            </div>
+                                        ))
+                                    }
+
+                                </div>
+                            </div>
+                            <div className="col-12 mt-2 d-flex justify-content-between">
+                                <input placeholder="Enter Message" className="form-control" value={message} onChange={(m) => { setMessage(m.target.value) }} />
+                                <button className="btn btn-success" onClick={saveMessage}>Send Message</button>
+                            </div>
+                            
+                        </div>
                     </div>
                     :
                     <div>
