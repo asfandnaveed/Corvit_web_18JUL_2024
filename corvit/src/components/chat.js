@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { auth, database, storage } from "../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onValue, push, ref, set } from "firebase/database";
-import {ref as stRef, uploadBytes} from "firebase/storage";
+import { getDownloadURL, ref as stRef, uploadBytes } from "firebase/storage";
 
 
 
@@ -12,13 +12,13 @@ function Chat() {
     const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [chats , setChats] = useState([]);
+    const [chats, setChats] = useState([]);
     const [image, setImage] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
 
-    
 
-    useEffect(()=>{
+
+    useEffect(() => {
 
         // if(auth.currentUser){
         //     setUser(auth.currentUser);
@@ -28,24 +28,24 @@ function Chat() {
         // }
 
 
-        const userRef = ref(database,'chats');
+        const userRef = ref(database, 'chats');
 
-        onValue(userRef, (snapshot)=>{
+        onValue(userRef, (snapshot) => {
             const data = snapshot.val();
-            if(data){
+            if (data) {
                 const chatList = Object.values(data);
                 setChats(chatList);
             }
         });
 
 
-    },[user]);
+    }, [user]);
 
 
 
-    const setImageData = (e)=>{
-        if(e.target.value[0]){
-            setImage(e.target.value[0]);
+    const setImageData = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
         }
     };
 
@@ -55,12 +55,41 @@ function Chat() {
 
         const userRef = ref(database, 'chats');
 
-        await set(push(userRef), {
-            message: message,
-            uid: user.uid,
-        }).then(()=>{
-          
-        });
+        if (image) {
+            try {
+                const fileName = image.name;
+
+                const storageRef = stRef(storage, `chatImages/${fileName}`);
+
+                await uploadBytes(storageRef, image);
+
+                const url = await getDownloadURL(storageRef);
+
+                await set(push(userRef), {
+                    message: url,
+                    uid: user.uid,
+                    type:"image"
+                });
+                setImage(null);
+
+                setImageUrl(url);
+                console.log('Image From Firebase', url);
+
+            } catch (e) {
+                console.log('Error', e);
+            }
+
+        } else {
+        
+            await set(push(userRef), {
+                message: message,
+                uid: user.uid,
+                type:"text"
+            });
+        }
+
+
+
 
 
     };
@@ -76,21 +105,28 @@ function Chat() {
 
     };
 
-    const uploadImage = async()=>{
+    const uploadImage = async () => {
 
-        if(image){
+        if (image) {
 
-            try{
+            try {
 
-                const storageRef = stRef(storage,`chatImages/${image.name}`);
+                const fileName = image.name;
 
-                await uploadBytes(storageRef,image);
+                const storageRef = stRef(storage, `chatImages/${fileName}`);
 
-            }catch(e){
-                console.log('Error',e);
+                await uploadBytes(storageRef, image);
+
+                const url = await getDownloadURL(storageRef);
+
+                setImageUrl(url);
+                console.log('Image From Firebase', url);
+
+            } catch (e) {
+                console.log('Error', e);
             }
 
-        }else{
+        } else {
             console.log("Image not selected");
         }
 
@@ -106,15 +142,15 @@ function Chat() {
                 user ?
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-12 mt-2" style={{height:'600px'}}>
-                                <div className="w-100 h-100 border p-2 shadow rounded" style={{overflowY:'scroll'}}>
+                            <div className="col-12 mt-2" style={{ height: '600px' }}>
+                                <div className="w-100 h-100 border p-2 shadow rounded" style={{ overflowY: 'scroll' }}>
                                     {/* CHAT BOX */}
 
                                     {
-                                        chats.map((c,index)=>(
-                                            <div key={index} className={`rounded-pill p-2 m-1 text-white ${c.uid == user.uid? 'bg-success ms-auto' : 'bg-info me-auto' }`} 
-                                            style={{maxWidth:'40%',textAlign: c.uid==user.uid? 'right' : 'left'}}>
-                                                {c.message}
+                                        chats.map((c, index) => (
+                                            <div key={index} className={`rounded-pill p-2 m-1 text-white ${c.uid == user.uid ? 'bg-success ms-auto' : 'bg-info me-auto'}`}
+                                                style={{ maxWidth: '40%', textAlign: c.uid == user.uid ? 'right' : 'left' }}>
+                                                {c.type=="text" ?  c.message :<img src={c.message} height={60}/>}
                                             </div>
                                         ))
                                     }
@@ -125,10 +161,10 @@ function Chat() {
                                 <input placeholder="Enter Message" className="form-control" value={message} onChange={(m) => { setMessage(m.target.value) }} />
                                 <button className="btn btn-success" onClick={saveMessage}>Send Message</button>
                                 <input type="file" onChange={setImageData} />
-                                <button onClick={uploadImage}>Upload Image</button>
+                               
 
                             </div>
-                            
+
                         </div>
                     </div>
                     :
