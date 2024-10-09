@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { auth, database } from "../config/firebaseConfig";
+import { auth, database, storage } from "../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onValue, push, ref, set } from "firebase/database";
-import { right } from "@popperjs/core";
+import {ref as stRef, uploadBytes} from "firebase/storage";
 
 
 
@@ -13,6 +13,8 @@ function Chat() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [chats , setChats] = useState([]);
+    const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
 
     
 
@@ -41,6 +43,12 @@ function Chat() {
 
 
 
+    const setImageData = (e)=>{
+        if(e.target.value[0]){
+            setImage(e.target.value[0]);
+        }
+    };
+
 
     const saveMessage = async () => {
 
@@ -64,6 +72,26 @@ function Chat() {
             setUser(result.user);
         } catch (e) {
 
+        }
+
+    };
+
+    const uploadImage = async()=>{
+
+        if(image){
+
+            try{
+
+                const storageRef = stRef(storage,`chatImages/${image.name}`);
+
+                await uploadBytes(storageRef,image);
+
+            }catch(e){
+                console.log('Error',e);
+            }
+
+        }else{
+            console.log("Image not selected");
         }
 
     };
@@ -96,6 +124,9 @@ function Chat() {
                             <div className="col-12 mt-2 d-flex justify-content-between">
                                 <input placeholder="Enter Message" className="form-control" value={message} onChange={(m) => { setMessage(m.target.value) }} />
                                 <button className="btn btn-success" onClick={saveMessage}>Send Message</button>
+                                <input type="file" onChange={setImageData} />
+                                <button onClick={uploadImage}>Upload Image</button>
+
                             </div>
                             
                         </div>
